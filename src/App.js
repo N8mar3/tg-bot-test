@@ -3,8 +3,13 @@ import './App.css';
 const tg = window.Telegram.WebApp;
 
 function App() {
-  const onClose = () => {
+
+  useEffect(() => {
     tg.ready();
+  }, []);
+  
+  const onClose = () => {
+    tg.close();
   };
 
   return (
