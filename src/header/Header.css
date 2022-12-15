@@ -1,0 +1,33 @@
+@import url('https://fonts.googleapis.com/css2?family=Poiret+One&display=swap');
+
+h1 {
+    text-align: center;
+    font-family: 'Poiret One';
+    font-weight: 400;
+    font-size: 84px;
+}
+  
+h2 {
+    text-align: center;
+    font-family: 'Poiret One';
+    font-weight: 400;
+    font-size: 36px;
+}
+
+h3 {
+    text-align: center;
+    font-family: 'Poiret One';
+    font-weight: 400;
+    font-size: 36px;
+}
+  
+.word-wrapper {
+    white-space: nowrap;
+    color: var(--tg-theme-text-color);
+}
+  
+.container {
+    max-width: 960px;
+    padding: 40px;
+    margin: 0 auto;
+}
