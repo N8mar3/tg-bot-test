@@ -7,19 +7,27 @@ import { TgHook } from "../hooks/Telegram.jsx";
 export default function Header() {
     const [replay, setReplay] = useState(true);
 
-    const {user, onClose} = TgHook();
+    const {onClose} = TgHook();
+
+    const tg = window.Telegram.WebApp;
   // Placeholder text data, as if from API
     const placeholderText = [
         {
             type: "heading1",
-            text: "Алёна Усенко" },
+            text: "Алёна Усенко"
+        },
         {
             type: "heading2",
             text: "Профессиональный коуч"
         },
         {
+            type: "heading2",
+            text: "Поможет тебе -"
+        },
+        {
             type: "heading3",
-            text: "Поможет тебе -"}
+            text: tg.initDataUnsafe.user ? tg.initDataUnsafe.user : 'Noname'
+        }
     ];
     
     const container = {
@@ -47,11 +55,6 @@ export default function Header() {
         >
             <div className="container">
                 {placeholderText.map((item, index) => {
-                return <AnimatedText {...item} key={index} />;
-                })}
-            </div>
-            <div className="container">
-                {user?.username.map((item, index) => {
                 return <AnimatedText {...item} key={index} />;
                 })}
             </div>
