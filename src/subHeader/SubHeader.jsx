@@ -1,10 +1,10 @@
 import React, { useState } from "react";
 import { motion } from "framer-motion";
-import AnimatedText from "./AnimatedText.jsx";
-import "./Header.css";
+import AnimatedText from "../header/AnimatedText.jsx";
+import "./SubHeader.css";
 import { TgHook } from "../hooks/Telegram.jsx";
 
-export default function Header() {
+export default function SubHeader() {
     const [replay, setReplay] = useState(true);
 
     const {user, onClose} = TgHook();
@@ -19,7 +19,7 @@ export default function Header() {
         },
         {
             type: "heading3",
-            text: "Поможет тебе -"}
+            text: "Поможет тебе с личностным ростом"}
     ];
     
     const container = {
@@ -39,7 +39,7 @@ export default function Header() {
 
     return (
         <motion.div
-            className="Header"
+            className="subHeader"
             initial="hidden"
             // animate="visible"
             animate={replay ? "visible" : "hidden"}
@@ -50,15 +50,11 @@ export default function Header() {
                 return <AnimatedText {...item} key={index} />;
                 })}
             </div>
-            <div className="container">
-                {user?.username.map((item, index) => {
-                return <AnimatedText {...item} key={index} />;
-                })}
-            </div>
             <button onClick={onClose}>Close</button>
             <button onClick={handleReplay}>
                 Replay <span>⟲</span>
             </button>
+            <div>{user?.username}</div>
         </motion.div>   
     );
 }
