@@ -2,12 +2,12 @@ import React, { useState } from "react";
 import { motion } from "framer-motion";
 import AnimatedText from "./AnimatedText.jsx";
 import "./Header.css";
-import { TgHook } from "../hooks/Telegram.jsx";
+import { TgHook } from "../hooks/Telegram.tsx";
 
 export default function Header() {
     const [replay, setReplay] = useState(true);
 
-    const {onClose} = TgHook();
+    const {user, onClose} = TgHook();
 
   // Placeholder text data, as if from API
     const placeholderText = [
@@ -25,7 +25,7 @@ export default function Header() {
         },
         {
             type: "heading3",
-            text: 'Noname'
+            text: `${user}`
         }
     ];
     
