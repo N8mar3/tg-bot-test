@@ -1,7 +1,6 @@
 import React, { useEffect } from "react";
 import "./App.css";
 import Header from "./header/Header";
-import SubHeader from "./subHeader/SubHeader";
 
 const tg = window.Telegram.WebApp;
 
@@ -15,7 +14,7 @@ export default function App() {
   return (
     <div>
       <Header/>
-      <SubHeader/>
+      
     </div>
   );
 }
