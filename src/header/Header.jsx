@@ -10,15 +10,16 @@ export default function Header() {
     const {onClose} = TgHook();
 
     const tg = window.Telegram.WebApp;
+    const username = tg.initDataUnsafe?.user;
   // Placeholder text data, as if from API
     const placeholderText = [
         {
-            type: "heading1",
-            text: "Алёна Усенко"
-        },
-        {
             type: "heading2",
             text: "Профессиональный коуч"
+        },
+        {
+            type: "heading1",
+            text: "Алёна Усенко"
         },
         {
             type: "heading2",
@@ -26,7 +27,7 @@ export default function Header() {
         },
         {
             type: "heading3",
-            text: tg.initDataUnsafe.user ? tg.initDataUnsafe.user : 'Noname'
+            text: username ? username : 'Noname'
         }
     ];
     
