@@ -1,32 +1,27 @@
 @import url('https://fonts.googleapis.com/css2?family=Poiret+One&display=swap');
 
-#root {
-    margin: 100px auto;
-    max-width: 500px;
-    padding-bottom: 200px;
-}
 
-.text {
+.scrollModule {
+    border-radius: 30px;
+    background-color: rgba(0,0,0,0.0);
     font-size: 36px;
-    height: 40px;
-    text-align: center;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    font-display: block;
     font-family: 'Poiret One';
 }
 
 .card {
-    width: 500px;
-    height: 300px;
     display: flex;
     align-items: center;
     justify-content: center;
 }
 
 .card-container {
-    overflow: hidden;
-    display: flex;
     align-items: center;
     justify-content: center;
-    position: relative;
-    padding-top: 20px;
-    margin-bottom: 100px;
+    height: 150px;
+    border-radius: 30px;
 }
+

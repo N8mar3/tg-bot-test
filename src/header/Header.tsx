@@ -2,7 +2,7 @@ import React, { useState } from "react";
 import { motion } from "framer-motion";
 import AnimatedText from "./AnimatedText.jsx";
 import "./Header.css";
-import { TgHook } from "../hooks/Telegram.tsx";
+import { TgHook } from "../hooks/Telegram.jsx";
 
 export default function Header() {
     const [replay, setReplay] = useState(true);
@@ -10,15 +10,14 @@ export default function Header() {
     const {user, onClose} = TgHook();
 
   // Placeholder text data, as if from API
-    const placeholderText = [
+    const placeholderText_1 = [
         {
             type: "heading2",
             text: "Профессиональный коуч"
-        },
-        {
-            type: "heading1",
-            text: "Алёна Усенко"
-        },
+        }
+    ];
+
+    const placeholderText_2 = [
         {
             type: "heading2",
             text: "Поможет тебе -"
@@ -28,6 +27,13 @@ export default function Header() {
             text: `${user}`
         }
     ];
+
+    const nameHeaderText = [
+        {
+            type: "heading1",
+            text: "Алёна Усенко"
+        }
+    ]
     
     const container = {
         visible: {
@@ -53,7 +59,25 @@ export default function Header() {
             variants={container}
         >
             <div className="container">
-                {placeholderText.map((item, index) => {
+                {placeholderText_1.map((item, index) => {
+                return <AnimatedText {...item} key={index} />;
+                })}
+            </div>
+            <motion.div
+                animate={{ color: ["rgb(240, 53, 228)", "rgb(245, 28, 111)", "rgb(188, 16, 236)"] }}
+                transition={{
+                    duration: 60,
+                    repeat: Infinity,
+                    repeatType: "reverse"
+                }}
+                className="container"
+            >
+                {nameHeaderText.map((item, index) => {
+                    return <AnimatedText {...item} key={index} />
+                })}
+            </motion.div>
+            <div className="container">
+                {placeholderText_2.map((item, index) => {
                 return <AnimatedText {...item} key={index} />;
                 })}
             </div>

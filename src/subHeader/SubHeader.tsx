@@ -1,69 +1,8 @@
-import React from "react";
 import "./SubHeader.css";
-import { motion, Variants, useScroll, useTransform } from "framer-motion";
+import { motion, useMotionValue } from "framer-motion";
 
-interface Props {
-  text: string;
-  colorA: string;
-  colorB: string;
-  colorC: string;
-}
 
-const cardVariants: Variants = {
-  offscreen: {
-    y: 0,
-    opacity: 0,
-    transition: {
-      type: "spring",
-      bounce: 0.1,
-      duration: 1
-    }
-  },
-  onscreen: {
-    y: 0,
-    opacity: 1,
-    transition: {
-      type: "spring",
-      bounce: 0.1,
-      duration: 1
-    }
-  }
-};
-
-function Card({ text, colorA, colorB, colorC }: Props) {
-
-  const speed = -5;
-  const { scrollY } = useScroll();
-  const y = useTransform(scrollY, (value) => value * speed);
-
-  return (
-    <motion.div style={{ y: y }}>
-      <motion.div
-        className="card-container"
-        initial="offscreen"
-        whileInView="onscreen"
-        viewport={{ once: false, amount: 1 }}
-        animate={{ color: [colorA, colorB, colorC] }}
-        transition={{
-          duration: 6,
-          repeat: Infinity,
-          repeatType: "reverse",
-        }}
-      >
-        <motion.div
-          className="card"
-          variants={cardVariants}
-        >
-          <p className="text">
-            {text}
-          </p>
-        </motion.div>
-      </motion.div>
-    </motion.div>
-  );
-}
-
-const food: [string, string, string, string][] = [
+const textes = [
   ["Карьерным ростом1", "#0af", "#1a7", "#fa7"],
   ["Карьерным ростом2", "#1af", "#5a5", "#fa6"],
   ["Карьерным ростом3", "#2af", "#5a5", "#fa5"],
@@ -74,8 +13,62 @@ const food: [string, string, string, string][] = [
   ["Карьерным ростом8", "#7af", "#5a5", "#fa0"]
 ];
 
+const height = 150;
+const padding = 10;
+const size = 150;
+
+function getHeight(textes:string[][]) {
+  const totalHeight = textes.length * height;
+  const totalPadding = (textes.length - 1) * padding;
+  const totalScroll = totalHeight + totalPadding;
+  return totalScroll;
+}
+
 export default function SubHeader() {
-  return food.map(([text, colorA, colorB, colorC]) => (
-    <Card text={text} colorA={colorA} colorB={colorB} colorC={colorC} key={text} />
-  ));
+
+  const scrollY = useMotionValue(0);
+
+  return (
+    <motion.div
+      className ="card-container"
+      style={{
+        overflow: "hidden",
+        position: "relative",
+        transform: "translateZ(0)",
+        cursor: "grab"
+      }}
+      whileTap={{ cursor: "grabbing" }}
+    >
+      <motion.div
+        className="card-container"
+        style={{
+            height: getHeight(textes),
+            y: scrollY
+        }}
+        drag="y"
+        dragConstraints={{
+            top: -getHeight(textes) + size,
+            bottom: 0
+        }}
+      >
+        {textes.map(([text, colorA, colorB, colorC]) => {
+          return (
+            <motion.div
+              className="scrollModule"
+              animate={{ color: [colorA, colorB, colorC] }}
+              transition={{
+                  duration: 12,
+                  repeat: Infinity,
+                  repeatType: "reverse",
+              }}
+              style={{height: height}}
+              key={text}
+            >
+              {text}
+            </motion.div>
+            );
+          })}
+        </motion.div>
+    </motion.div>
+  );
 }
