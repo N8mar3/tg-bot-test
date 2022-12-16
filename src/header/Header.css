@@ -1,10 +1,10 @@
-@import url('https://fonts.googleapis.com/css2?family=Poiret+One&family=Rubik+Mono+One&display=swap');
+@import url('https://fonts.googleapis.com/css2?family=Comfortaa:wght@700&family=Poiret+One&family=Poppins:wght@900&display=swap');
 
 h1 {
-    padding-bottom: 30px;
     text-align: center;
+    justify-content: center;
     font-size: 84px;
-    font-family: 'Poiret One';
+    font-family: 'Comfortaa', cursive;
 }
   
 h2 {
@@ -12,6 +12,7 @@ h2 {
     font-family: 'Poiret One';
     font-weight: 400;
     font-size: 36px;
+    color: var(--tg-theme-text-color);;
 }
 
 h3 {
@@ -24,11 +25,10 @@ h3 {
   
 .word-wrapper {
     white-space: nowrap;
-    color: var(--tg-theme-text-color);
 }
   
 .container {
     max-width: 960px;
-    padding: 40px;
+    padding: 10px;
     margin: 0 auto;
 }
